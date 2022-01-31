@@ -6,7 +6,7 @@ public class Game : MonoBehaviour
 {
     public float speed;
 
-    private Rigidbody2D rd;
+    private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 moveVelocity;
 
@@ -18,11 +18,11 @@ public class Game : MonoBehaviour
     void Update()
     {
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        moveVelocity = moveInput.normalazed * speed;
+        moveVelocity = moveInput.normalized * speed;
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveVelocity * TIme.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 }
