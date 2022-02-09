@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2863282487244550793}
   - component: {fileID: 8732055386415895336}
   - component: {fileID: 2046606320943528754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: testProjPref
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,5 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  damage: 2
   startLifetime: 3
   distance: 0
+  whatIsSolid:
+    serializedVersion: 2
+    m_Bits: 64
