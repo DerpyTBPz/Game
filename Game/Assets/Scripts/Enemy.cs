@@ -6,7 +6,14 @@ public class Enemy : MonoBehaviour
 {
     
     public int health;
+    public float speed;
+    private Player player;
 
+    void Start()
+    {
+        player = FindObjectOfType<Player>();
+    }
+    
     public void takeDamage(int damage)
     {
         health -= damage;
@@ -17,6 +24,8 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-        }        
+            Debug.Log("Dead");
+        }   
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);   
     }
 }
