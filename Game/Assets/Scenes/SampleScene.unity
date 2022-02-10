@@ -156,8 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b11523e7dd8ff43a42fa72c90f0a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollCooldown: 1
-  rollSpeed: 1000
+  startDashCooldown: 5
+  dashCooldown: 0
+  dashSpeed: 1000
   startSpeed: 5
 --- !u!50 &39277796
 Rigidbody2D:

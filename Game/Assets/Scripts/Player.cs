@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float rollCooldown;
-    public float rollSpeed;
+    public float startDashCooldown;
+    public float dashCooldown;    
+    public float dashSpeed;
+
     private float speed;
     public float startSpeed;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
-    private Vector2 moveVelocity;
+    private Vector2 moveVelocity;    
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         speed = startSpeed;
+        dashCooldown = startDashCooldown;
     }
    
     void Update()
     {
         playerMovement();
         mouseTracing();
-        roll();
+        dash();
     }
 
     void playerMovement()
@@ -45,13 +49,23 @@ public class Player : MonoBehaviour
         transform.up = direction;
     }
 
-    void roll()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {            
-            Vector3 vector = new Vector3(moveInput.x, moveInput.y, 0);
-            Debug.Log("Space");
-            transform.position += vector.normalized * rollSpeed * Time.deltaTime;
+    void dash()
+    {       
+        if (dashCooldown <= 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {            
+                Vector3 vector = new Vector3(moveInput.x, moveInput.y, 0);                
+                transform.position += vector.normalized * dashSpeed * Time.deltaTime;
+                Debug.Log("Dash");
+                dashCooldown = startDashCooldown;
+            }            
+        }
+        else 
+        {
+            dashCooldown -= Time.deltaTime;
         }
     }
+
+
 }
