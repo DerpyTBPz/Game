@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
 
     void dash()
     {       
+
         if (dashCooldown <= 0)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -63,6 +64,10 @@ public class Player : MonoBehaviour
         }
         else 
         {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("Cooldown!");
+            }
             dashCooldown -= Time.deltaTime;
         }
     }

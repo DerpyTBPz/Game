@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public void takeDamage(int damage)
     {
         health -= damage;
+        Debug.Log("Hit");
     }
 
     private void Update()
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("Dead");
+            Debug.Log("Dead");            
         }   
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);   
     }
