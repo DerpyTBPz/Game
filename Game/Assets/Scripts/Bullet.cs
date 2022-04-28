@@ -8,26 +8,20 @@ public class Bullet : MonoBehaviour
     public int damage;
     public float startLifetime;
     private float lifetime;
-    public float distance;
+    public float distance;    
     public LayerMask whatIsSolid;
-
+    
     void Start()
     {
-        lifetime = startLifetime;
+        lifetime = startLifetime;        
     }
 
     void Update()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, whatIsSolid);
-        if (hitInfo.collider != null)
-        {
-            if (hitInfo.collider.CompareTag("Enemy"))
-            {
-                Debug.Log("hit");
-                hitInfo.collider.GetComponent<Enemy>().takeDamage(damage);
-                Destroy(gameObject);
-            }
-        }
+        
+        bulletHit(hitInfo);
+
         transform.Translate(Vector2.up * speed * Time.deltaTime);  
         destroyBullet();
     }
@@ -41,6 +35,24 @@ public class Bullet : MonoBehaviour
         else
         {
             lifetime -= Time.deltaTime;
+        }
+    }
+
+    void bulletHit(RaycastHit2D hitInfo)
+    {
+        if (hitInfo.collider != null)
+        {
+            if (hitInfo.collider.CompareTag("Enemy"))
+            {
+                Debug.Log("hit");
+                hitInfo.collider.GetComponent<Enemy>().takeDamage(damage);
+                Destroy(gameObject);
+            }
+            if (hitInfo.collider.CompareTag("Wall"))
+            {
+                Debug.Log("Wall HIt");
+                Destroy(gameObject);
+            }
         }
     }
 

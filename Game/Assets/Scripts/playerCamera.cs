@@ -7,7 +7,8 @@ public class playerCamera : MonoBehaviour
 
     private Transform playerTransform;
     private string playerTag;
-    public float movingSpeed; 
+    public int constSpeed;
+    private float movingSpeed; 
     Vector3 mousePosition;
 
 
@@ -44,7 +45,7 @@ public class playerCamera : MonoBehaviour
                 z = this.playerTransform.position.z - 10,
             };
 
-            Vector3 pos = Vector3.Lerp(this.transform.position, target, this.movingSpeed = Time.deltaTime);
+            Vector3 pos = Vector3.Lerp(this.transform.position, target, this.movingSpeed = Time.deltaTime + constSpeed/100);
 
             this.transform.position = pos;
         }

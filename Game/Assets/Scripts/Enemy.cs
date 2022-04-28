@@ -20,13 +20,18 @@ public class Enemy : MonoBehaviour
         Debug.Log("Hit");
     }
 
+    public void enemyMove()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+    }
+
     private void Update()
     {
         if (health <= 0)
         {
             Destroy(gameObject);
             Debug.Log("Dead");            
-        }   
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);   
+        }
+        enemyMove();
     }
 }
